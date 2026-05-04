@@ -71,8 +71,5 @@ Study-Vista/
 3. Head over to the **"➕ Add Log"** tab to record your first study session.
 4. Explore the **Overview**, **Analytics**, **AI Insights**, and **Burnout Monitor** tabs to analyze your data!
 
-## 🤝 Contributing
-Contributions, issues, and feature requests are welcome! Feel free to check the issues page.
-
 ---
-*Built with ❤️ to make studying smarter, not just harder.*
+*Built with ❤️ to make studying smarter.*
