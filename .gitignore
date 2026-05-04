@@ -12,16 +12,10 @@ env/
 # Streamlit specific
 .streamlit/secrets.toml
 
-# Local database files (if you don't want to commit them)
+# Local database files
 *.db
 *.sqlite3
 
-# IDE / OS files
-.vscode/
-.idea/
-.DS_Store
-Thumbs.db
-
-# Generated reports / data (optional)
+# Generated reports
 *.pdf
-# rishu_weekly_report_2026-01-06.pdf
+
