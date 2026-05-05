@@ -327,9 +327,7 @@ button[kind="primary"]:hover {
 )
 
 
-# ============================================================
-#                  HELPER FUNCTIONS
-# ============================================================
+# HELPER FUNCTIONS
 
 def render_plotly_chart(fig, height=400):
     """Apply consistent dark transparent theme to Plotly charts."""
@@ -343,9 +341,7 @@ def render_plotly_chart(fig, height=400):
     st.plotly_chart(fig, use_container_width=True)
 
 
-# ============================================================
-#                  SESSION STATE
-# ============================================================
+# SESSION STATE
 
 if "logged_in" not in st.session_state:
     st.session_state.logged_in = False
@@ -355,9 +351,7 @@ if "username" not in st.session_state:
     st.session_state.username = None
 
 
-# ============================================================
-#                  AUTHENTICATION FLOW
-# ============================================================
+# AUTHENTICATION FLOW
 
 if not st.session_state.logged_in:
     col1, col2, col3 = st.columns([1, 2, 1])
@@ -387,9 +381,7 @@ if not st.session_state.logged_in:
     st.stop()
 
 
-# ============================================================
-#                  SIDEBAR
-# ============================================================
+# SIDEBAR
 
 with st.sidebar:
     st.markdown(
@@ -460,9 +452,7 @@ with st.sidebar:
                 session.close()
 
 
-# ============================================================
-#                  MAIN HEADER
-# ============================================================
+# MAIN HEADER
 
 st.markdown(
     f"""
@@ -485,9 +475,7 @@ tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs(
 )
 
 
-# ============================================================
-#            TAB 1: OVERVIEW DASHBOARD
-# ============================================================
+# TAB 1: OVERVIEW DASHBOARD
 
 with tab1:
     if df.empty:
@@ -508,7 +496,7 @@ with tab1:
             unsafe_allow_html=True,
         )
     else:
-        # === Stat Cards ===
+        # Stat Cards
         total_hours = df["study_hours"].sum()
         total_sessions = len(df)
         avg_focus = df["focus_level"].mean()
@@ -538,7 +526,7 @@ with tab1:
 
         st.markdown("<br>", unsafe_allow_html=True)
 
-        # === Charts Row ===
+        # Charts Row
         col1, col2 = st.columns([2, 1])
 
         with col1:
@@ -578,7 +566,7 @@ with tab1:
             fig.update_layout(showlegend=False)
             render_plotly_chart(fig, height=350)
 
-        # === Achievements ===
+        # Achievements
         st.markdown(
             "<div class='section-header'><b>🏆 Achievements Unlocked</b></div>",
             unsafe_allow_html=True,
@@ -607,9 +595,7 @@ with tab1:
             st.info("Keep studying to unlock achievements! 🎯 Start with 10 hours of study time.")
 
 
-# ============================================================
-#            TAB 2: ADD STUDY LOG
-# ============================================================
+# TAB 2: ADD STUDY LOG
 
 with tab2:
     st.markdown(
@@ -703,9 +689,7 @@ with tab2:
         )
 
 
-# ============================================================
-#            TAB 3: ADVANCED ANALYTICS
-# ============================================================
+# TAB 3: ADVANCED ANALYTICS
 
 with tab3:
     if df.empty:
@@ -720,7 +704,7 @@ with tab3:
             unsafe_allow_html=True,
         )
     else:
-        # === Subject Analysis ===
+        # Subject Analysis
         st.markdown(
             "<div class='section-header'><b>📊 Study Hours by Subject</b></div>",
             unsafe_allow_html=True,
@@ -751,7 +735,7 @@ with tab3:
         render_plotly_chart(fig, height=400)
         st.dataframe(subject_analysis, use_container_width=True)
 
-        # === Weekly Pattern ===
+        # Weekly Pattern
         st.markdown(
             "<div class='section-header'><b>📅 Weekly Study Pattern</b></div>",
             unsafe_allow_html=True,
@@ -773,7 +757,7 @@ with tab3:
         fig.update_traces(text=weekly.values.round(1), textposition="outside")
         render_plotly_chart(fig, height=400)
 
-        # === Focus vs Hours + Streak ===
+        # Focus vs Hours + Streak 
         col1, col2 = st.columns(2)
 
         with col1:
@@ -840,9 +824,7 @@ with tab3:
                 st.warning("📅 Study today to start a new streak!")
 
 
-# ============================================================
-#            TAB 4: AI INSIGHTS
-# ============================================================
+# TAB 4: AI INSIGHTS
 
 with tab4:
     if df.empty:
@@ -857,7 +839,7 @@ with tab4:
             unsafe_allow_html=True,
         )
     else:
-        # === Subject Clustering ===
+        # Subject Clustering
         st.markdown(
             "<div class='section-header'><b>🧠 AI-Powered Subject Clustering</b></div>",
             unsafe_allow_html=True,
@@ -886,7 +868,7 @@ with tab4:
         else:
             st.dataframe(clustered, use_container_width=True, hide_index=True)
 
-        # === Performance Insights ===
+        # Performance Insights
         st.markdown(
             "<div class='section-header'><b>💡 Performance Insights</b></div>",
             unsafe_allow_html=True,
@@ -925,7 +907,7 @@ with tab4:
                 unsafe_allow_html=True,
             )
 
-        # === Recommendations ===
+        # Recommendations 
         st.markdown(
             "<div class='section-header'><b>🎯 Personalized Recommendations</b></div>",
             unsafe_allow_html=True,
@@ -969,9 +951,7 @@ with tab4:
             st.success("🎉 Great job! You're maintaining excellent study habits!")
 
 
-# ============================================================
-#            TAB 5: BURNOUT MONITOR
-# ============================================================
+# TAB 5: BURNOUT MONITOR
 
 with tab5:
     st.markdown(
@@ -1086,9 +1066,7 @@ with tab5:
             )
 
 
-# ============================================================
-#            TAB 6: PLANNER & WEEKLY REPORT
-# ============================================================
+# TAB 6: PLANNER & WEEKLY REPORT
 
 with tab6:
     st.markdown(
@@ -1144,7 +1122,7 @@ with tab6:
         fig.update_traces(text=weekly_subjects.values.round(1), textposition="outside")
         render_plotly_chart(fig, height=400)
 
-    # === AI Goal Suggestions ===
+    # AI Goal Suggestions
     if not df.empty:
         st.markdown(
             "<div class='section-header'><b>🤖 AI-Powered Study Goal Suggestion</b></div>",

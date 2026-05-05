@@ -19,7 +19,7 @@ def calculate_burnout(df):
     df = df.copy().sort_values("date")
     score = 0.0
 
-    # --- Factor 1: Average study hours (0–3 points) ---
+    # Factor 1: Average study hours (0–3 points)
     avg_hours = df["study_hours"].mean()
     if avg_hours > 8:
         score += 3.0
@@ -28,7 +28,7 @@ def calculate_burnout(df):
     elif avg_hours > 4:
         score += 1.0
 
-    # --- Factor 2: Focus decline trend (0–3 points) ---
+    # Factor 2: Focus decline trend (0–3 points)
     if len(df) >= 3:
         df["focus_trend"] = df["focus_level"].diff()
         avg_trend = df["focus_trend"].mean()
@@ -39,7 +39,7 @@ def calculate_burnout(df):
         elif avg_trend < 0:
             score += 1.0
 
-    # --- Factor 3: Session frequency / no rest days (0–2 points) ---
+    # Factor 3: Session frequency / no rest days (0–2 points)
     if len(df) >= 7:
         unique_dates = df["date"].nunique()
         date_range = (df["date"].max() - df["date"].min()).days + 1
@@ -50,7 +50,7 @@ def calculate_burnout(df):
             elif study_ratio > 0.75:
                 score += 1.0
 
-    # --- Factor 4: Focus variability (0–2 points) ---
+    # Factor 4: Focus variability (0–2 points)
     focus_std = df["focus_level"].std()
     if focus_std > 1.5:
         score += 2.0

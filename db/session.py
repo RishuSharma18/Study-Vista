@@ -16,7 +16,7 @@ SessionLocal = sessionmaker(bind=engine)
 # Create tables if they don't exist
 Base.metadata.create_all(bind=engine)
 
-# --- Lightweight migration for existing DBs ---
+# Lightweight migration for existing DBs
 # Add new columns if they don't already exist
 _inspector = inspect(engine)
 

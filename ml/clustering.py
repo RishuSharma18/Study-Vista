@@ -50,7 +50,7 @@ def cluster_subjects(df):
         kmeans = KMeans(n_clusters=n_clusters, random_state=42, n_init=10)
         df_grouped["cluster"] = kmeans.fit_predict(df_grouped)
 
-    # Add human-readable labels
+    # readable labels
     hours_median = df_grouped["study_hours"].median()
     focus_median = df_grouped["focus_level"].median()
     df_grouped["category"] = df_grouped.apply(
